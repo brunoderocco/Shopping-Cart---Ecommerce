@@ -22,28 +22,50 @@ interface CartItemsAmount {
 }
 
 const Home = (): JSX.Element => {
-  // const [products, setProducts] = useState<ProductFormatted[]>([]);
-  // const { addProduct, cart } = useCart();
+   const [products, setProducts] = useState<ProductFormatted[]>([]);
+   const { addProduct, cart } = useCart();
 
-  // const cartItemsAmount = cart.reduce((sumAmount, product) => {
-  //   // TODO
-  // }, {} as CartItemsAmount)
+   //const cartItemsAmount = cart.reduce((sumAmount, product) => {
+     // TODO
+     
+
+   //}, {} as CartItemsAmount)
 
   useEffect(() => {
     async function loadProducts() {
-      // TODO
+      //api.get('products').then(response => setProducts(response.data.products))
+      const response = await api.get<Product[]>('products');
+      console.log(response.data);
+      
+      const data = response.data.map(product => ({
+                    ...product,
+                    priceFormatted: formatPrice(product.price)
+                  }));
+      
+      setProducts(data);
+      console.log(data);
+      console.log(products);
     }
 
     loadProducts();
+    console.log(products);
   }, []);
 
   function handleAddProduct(id: number) {
     // TODO
   }
 
+
+  /*{products.map(product => (
+
+    <strong>{product.title}</strong>
+
+    ))}*/
+
   return (
     <ProductList>
       <li>
+      
         <img src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg" alt="Tênis de Caminhada Leve Confortável" />
         <strong>Tênis de Caminhada Leve Confortável</strong>
         <span>R$ 179,90</span>
@@ -59,6 +81,7 @@ const Home = (): JSX.Element => {
 
           <span>ADICIONAR AO CARRINHO</span>
         </button>
+		
       </li>
     </ProductList>
   );
