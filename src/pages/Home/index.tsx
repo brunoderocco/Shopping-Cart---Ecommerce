@@ -29,6 +29,8 @@ const Home = (): JSX.Element => {
      
      const newSumAmount = {...sumAmount};
      newSumAmount[product.id] = product.amount;
+    
+     console.log(newSumAmount);
 
      return newSumAmount;
 
@@ -55,7 +57,7 @@ const Home = (): JSX.Element => {
   return (
     <ProductList>
         {products.map(product => (
-            <li key = {product.id.toString()}>
+            <li key = {product.id}>
               <img src={product.image} alt={product.title} />
               <strong>{product.title}</strong>
               <span>{product.priceFormatted}</span>
