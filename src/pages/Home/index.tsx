@@ -29,8 +29,6 @@ const Home = (): JSX.Element => {
      
      const newSumAmount = {...sumAmount};
      newSumAmount[product.id] = product.amount;
-    
-     console.log(newSumAmount);
 
      return newSumAmount;
 
@@ -71,7 +69,7 @@ const Home = (): JSX.Element => {
                 { cartItemsAmount[product.id] || 0} 
               </div>
 
-              <span>ADICIONAR AO CARRINHO</span>
+              <span>ADD TO CART</span>
             </button>
 
             </li>
